@@ -18,4 +18,7 @@ shinyServer(function(input, output) {
         output$text3  <- renderText({
                 dataInput()[3]
         })
+        output$allText <- renderText({
+                input$text
+        })
 })

@@ -25,27 +25,27 @@ predict.match <- function(words) {
 }
 
 swift.output <- function(sentence) {
-        sentence <- gsub(" $", "", sentence)
+        sentence <- gsub("[ \":-,'!.]$", "", sentence)
         gram <- predict.input(sentence)
         n <- predict.match(gram)$n
         if (length(n) == 3) {return(n)}
         else {
                 gram <- word(gram, start = -2, end = word_count(gram))
                 n.new <- predict.match(gram)$n
-                n.new <- n.new[!(n.new %in% tolower(n))]
                 n <- c(n, n.new)
+                n <- unique(n)
         }
         if (length(n) >= 3) {return(n[1:3])}
         else {
                 gram <- word(gram, -1)
                 n.new <- predict.match(gram)$n
-                n.new <- n.new[!(n.new %in% tolower(n))]
                 n <- c(n, n.new)
+                n <- unique(n)
         }
         if (length(n) >= 3) {return(n[1:3])}
         else {
-                most_common <- most_common[!(most_common %in% tolower(n))]
                 n <- c(n, most_common)
+                n <- unique(n)
                 return(n[1:3])
         }
 }

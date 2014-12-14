@@ -7,16 +7,22 @@ shinyUI(fluidPage(
         # Sidebar with a slider input for the number of bins
         sidebarLayout(
                 sidebarPanel(
-                        p("This is my app for the data science specialization!"),
-                        
-                        textInput("text", "Here are some words", value = "")
+                        h4("Predictive text algorithm through natural language processing in R."),
+                        textInput("text", "Enter text here:", value = ""),
+                        p("This app was built for the Data Science Specialization offered on Coursera and taught by Brian Caffo, 
+                          Roger Peng, and Jeff Leek of the Johns Hopkins Biostatistics department.")
                 ),
                 
-                # Show a plot of the generated distribution
                 mainPanel(
+                        h3("Word prediction:"),
                         tags$li(textOutput("text1")),
                         tags$li(textOutput("text2")),
-                        tags$li(textOutput("text3"))
-                )
+                        tags$li(textOutput("text3")),
+                        
+                        p(textOutput("allText"))
+                        
+                ),
+                
+                
         )
 ))
