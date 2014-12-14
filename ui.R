@@ -1,24 +1,22 @@
 library(shiny)
 
-# Define UI for application that draws a histogram
 shinyUI(fluidPage(
         
-        # Application title
-        titlePanel("Hello Shiny!"),
+        titlePanel("Text Prediction"),
         
         # Sidebar with a slider input for the number of bins
         sidebarLayout(
                 sidebarPanel(
-                        sliderInput("bins",
-                                    "Number of bins:",
-                                    min = 1,
-                                    max = 50,
-                                    value = 30)
+                        p("This is my app for the data science specialization!"),
+                        
+                        textInput("text", "Here are some words", value = "")
                 ),
                 
                 # Show a plot of the generated distribution
                 mainPanel(
-                        plotOutput("distPlot")
+                        tags$li(textOutput("text1")),
+                        tags$li(textOutput("text2")),
+                        tags$li(textOutput("text3"))
                 )
         )
 ))
