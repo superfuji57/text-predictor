@@ -18,8 +18,7 @@ shinyUI(fluidPage(
                         tags$li(textOutput("text1")),
                         tags$li(textOutput("text2")),
                         tags$li(textOutput("text3")),
-                        
-                        h5("Your text:"),
+                        h5(""),
                         p(textOutput("allText"))
                         
                 ),
