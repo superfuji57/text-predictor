@@ -25,7 +25,7 @@ predict.match <- function(words) {
 }
 
 swift.output <- function(sentence) {
-        sentence <- gsub("[ \":-,'!.]$", "", sentence)
+        sentence <- gsub("[ :\\.,;\"!']$", "", sentence)
         gram <- predict.input(sentence)
         n <- predict.match(gram)$n
         if (length(n) == 3) {return(n)}
