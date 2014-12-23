@@ -1,9 +1,14 @@
+# this file has been updated with methods found in a fellow Coursera classmate's app
+# here: https://github.com/ram6ler/Ye-Old-Sluggardly-Key
+
 library(stringr)
 library(qdap)
 library(data.table)
 library(dplyr)
 load("./data/final_grams.Rda")
-most_common <- c("the", "a", "to")
+most_common <- c("the", "a", "to") # words if no matches
+starters <- c("I", "The", "You") # words to start a sentence
+
 # take in a string of any length and reduce it to a number of words that can be used
 # to generate an n-gram prediction
 predict.input <- function(string) {
@@ -25,7 +30,8 @@ predict.match <- function(words) {
 }
 
 swift.output <- function(sentence) {
-        sentence <- gsub("[ :\\.,;\"!']$", "", sentence)
+        sentence <- gsub("[ :,;\"']$", "", sentence)
+        if (grepl("[\\.?!]$", sentence)) {return(starters)}
         gram <- predict.input(sentence)
         n <- predict.match(gram)$n
         if (length(n) == 3) {return(n)}

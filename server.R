@@ -7,7 +7,7 @@ shinyServer(function(input, output) {
                 
                 if (!input$text == ""){
                 swift.output(input$text)
-                } else {return("Please enter text")}
+                } else {return(starters)}
                 
                 
         })
