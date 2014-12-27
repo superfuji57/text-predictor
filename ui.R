@@ -2,7 +2,7 @@ library(shiny)
 
 shinyUI(fluidPage(
         
-        titlePanel("Text Prediction"),
+        titlePanel("Next-Word Text Prediction"),
         
         # Sidebar with a slider input for the number of bins
         sidebarLayout(
@@ -14,13 +14,23 @@ shinyUI(fluidPage(
                 ),
                 
                 mainPanel(
-                        h3("Word prediction:"),
-                        tags$li(textOutput("text1")),
-                        tags$li(textOutput("text2")),
-                        tags$li(textOutput("text3")),
-                        h5(""),
-                        p(textOutput("allText"))
+                        tabsetPanel(type = "tabs",
+                                tabPanel("Application",
+                                        h3("Word prediction:"),
+                                        tags$li(textOutput("text1")),
+                                        tags$li(textOutput("text2")),
+                                        tags$li(textOutput("text3")),
+                                        h5(""),
+                                        p(textOutput("allText"))
+                                            ),
+                                
+                                tabPanel("Methodology",
+                                         h3("Here's how I did some things.")
+                                        ),
+                                
+                                tabPanel("About")
                         
+                )
                 ),
                 
                 
