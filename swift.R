@@ -25,26 +25,29 @@ predict.input <- function(string) {
 predict.match <- function(words) {
         words <- paste(words, "$", sep="")
         filter(all_grams, grepl(words, gram)) %>%
-                filter(min_rank(desc(freq)) <= 3) %>%
-                select(n)
+                select(n, freq)
 }
+
+## TODO
+## Change references to predict.match. Now returns n and freq.
+## Need to sort at another point
+## match n-grams and weight if repeated
 
 swift.output <- function(sentence) {
         sentence <- gsub("[ :,;\"']$", "", sentence)
         if (grepl("[\\.?!]$", sentence)) {return(starters)}
         gram <- predict.input(sentence)
-        n <- predict.match(gram)$n
-        if (length(n) == 3) {return(n)}
+        n <- predict.match(gram)
+        if (length(unique(n$n)) == 3) {return(n$n)}
         else {
                 gram <- word(gram, start = -2, end = word_count(gram))
-                n.new <- predict.match(gram)$n
+                n.new <- predict.match(gram)
                 n <- c(n, n.new)
-                n <- unique(n)
         }
-        if (length(n) >= 3) {return(n[1:3])}
+        if (length(unique(n$n)) >= 3) {return(n[1:3])}
         else {
                 gram <- word(gram, -1)
-                n.new <- predict.match(gram)$n
+                n.new <- predict.match(gram)
                 n <- c(n, n.new)
                 n <- unique(n)
         }
